@@ -15,6 +15,7 @@ export const PeoplePage = () => {
 
   useEffect(() => {
     setIsLoading(true);
+    setIsError(false);
     getPeople()
       .then(response => {
         const prepearedPeople = prepearPeople(response);
@@ -115,7 +116,7 @@ export const PeoplePage = () => {
       <div className="block">
         <div className="columns is-desktop is-flex-direction-row-reverse">
           <div className="column is-7-tablet is-narrow-desktop">
-            {people && <PeopleFilters />}
+            {people !== null && !isError && <PeopleFilters />}
           </div>
 
           <div className="column">
@@ -134,7 +135,9 @@ export const PeoplePage = () => {
                 </p>
               )}
 
-              <p>There are no people matching the current search criteria</p>
+              {visiblePeople?.length === 0 && (
+                <p>There are no people matching the current search criteria</p>
+              )}
 
               {people && people.length > 0 && !isLoading && (
                 <PeopleTable people={visiblePeople} />

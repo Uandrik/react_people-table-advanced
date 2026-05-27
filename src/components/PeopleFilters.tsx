@@ -1,12 +1,13 @@
 import classNames from 'classnames';
-import { NavLink, useSearchParams } from 'react-router-dom';
+import { NavLink, useParams, useSearchParams } from 'react-router-dom';
 import { Centuries, getSearchWith, Sex } from '../utils/searchHelper';
 import { useState } from 'react';
 import { activeCenturies } from '../utils/Actions';
 
 export const PeopleFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(searchParams.get('query') || '');
+  const { slug } = useParams();
 
   const params = new URLSearchParams(searchParams.toString());
   const sex = params.get('sex') as Sex | null;
@@ -27,13 +28,19 @@ export const PeopleFilters = () => {
         </NavLink>
         <NavLink
           className={getSexActiveLink('m')}
-          to={`/people?${getSearchWith(searchParams, { sex: 'm' })}`}
+          to={{
+            pathname: `/people/${slug ? slug : ''}`,
+            search: `?${getSearchWith(searchParams, { sex: 'm' })}`,
+          }}
         >
           Male
         </NavLink>
         <NavLink
           className={getSexActiveLink('f')}
-          to={`/people?${getSearchWith(searchParams, { sex: 'f' })}`}
+          to={{
+            pathname: `/people/${slug ? slug : ''}`,
+            search: `?${getSearchWith(searchParams, { sex: 'f' })}`,
+          }}
         >
           Female
         </NavLink>
@@ -75,7 +82,7 @@ export const PeopleFilters = () => {
                   'is-info': centuries?.includes(num.toString()),
                 })}
                 to={{
-                  pathname: '/people',
+                  pathname: `/people/${slug ? slug : ''}`,
                   search: `${getSearchWith(searchParams, { centuries: activeCenturies(num, centuries) })}`,
                 }}
               >
@@ -88,7 +95,10 @@ export const PeopleFilters = () => {
             <NavLink
               data-cy="centuryALL"
               className="button is-success is-outlined"
-              to="/people"
+              to={{
+                pathname: `/people/${slug ? slug : ''}`,
+                search: `?${getSearchWith(searchParams, { centuries: null })}`,
+              }}
             >
               All
             </NavLink>
@@ -99,7 +109,10 @@ export const PeopleFilters = () => {
       <div className="panel-block">
         <NavLink
           className="button is-link is-outlined is-fullwidth"
-          to="/people"
+          to={{
+            pathname: `/people/${slug ? slug : ''}`,
+            search: `?${getSearchWith(searchParams, { sex: null, centuries: null, query: null })}`,
+          }}
         >
           Reset all filters
         </NavLink>

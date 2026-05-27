@@ -24,7 +24,10 @@ export const PeopleTable = ({ people }: { people: Person[] | null }) => {
             <span className="is-flex is-flex-wrap-nowrap">
               Name
               <NavLink
-                to={`?${getSearchWith(searchParams, getSortParams(sort, order, 'name'))}`}
+                to={{
+                  pathname: `/people/${slug ? slug : ''}`,
+                  search: `?${getSearchWith(searchParams, getSortParams(sort, order, 'name'))}`,
+                }}
               >
                 <span className="icon">
                   <i className={toggleSortArrows(sort, order, 'name')} />
@@ -37,7 +40,10 @@ export const PeopleTable = ({ people }: { people: Person[] | null }) => {
             <span className="is-flex is-flex-wrap-nowrap">
               Sex
               <NavLink
-                to={`?${getSearchWith(searchParams, getSortParams(sort, order, 'sex'))}`}
+                to={{
+                  pathname: `/people/${slug ? slug : ''}`,
+                  search: `?${getSearchWith(searchParams, getSortParams(sort, order, 'sex'))}`,
+                }}
               >
                 <span className="icon">
                   <i className={toggleSortArrows(sort, order, 'sex')} />
@@ -50,7 +56,10 @@ export const PeopleTable = ({ people }: { people: Person[] | null }) => {
             <span className="is-flex is-flex-wrap-nowrap">
               Born
               <NavLink
-                to={`?${getSearchWith(searchParams, getSortParams(sort, order, 'born'))}`}
+                to={{
+                  pathname: `/people/${slug ? slug : ''}`,
+                  search: `?${getSearchWith(searchParams, getSortParams(sort, order, 'born'))}`,
+                }}
               >
                 <span className="icon">
                   <i className={toggleSortArrows(sort, order, 'born')} />
@@ -63,7 +72,10 @@ export const PeopleTable = ({ people }: { people: Person[] | null }) => {
             <span className="is-flex is-flex-wrap-nowrap">
               Died
               <NavLink
-                to={`?${getSearchWith(searchParams, getSortParams(sort, order, 'died'))}`}
+                to={{
+                  pathname: `/people/${slug ? slug : ''}`,
+                  search: `?${getSearchWith(searchParams, getSortParams(sort, order, 'died'))}`,
+                }}
               >
                 <span className="icon">
                   <i className={toggleSortArrows(sort, order, 'died')} />
