@@ -14,6 +14,7 @@ export const PeoplePage = () => {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
+    setPeople(null);
     setIsLoading(true);
     setIsError(false);
     getPeople()
@@ -23,7 +24,6 @@ export const PeoplePage = () => {
         setPeople(prepearedPeople);
       })
       .catch(() => {
-        setPeople([]);
         setIsError(true);
       })
       .finally(() => setIsLoading(false));
@@ -129,7 +129,7 @@ export const PeoplePage = () => {
                 </p>
               )}
 
-              {people?.length === 0 && !isLoading && !isError && (
+              {people?.length === 0 && !isError && !isLoading && (
                 <p data-cy="noPeopleMessage">
                   There are no people on the server
                 </p>
