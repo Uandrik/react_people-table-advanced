@@ -13,6 +13,8 @@ export const PeoplePage = () => {
 
   const [searchParams] = useSearchParams();
 
+  console.log(people?.length === 0, !isError && !isLoading);
+
   useEffect(() => {
     setPeople(null);
     setIsLoading(true);
@@ -135,7 +137,7 @@ export const PeoplePage = () => {
                 </p>
               )}
 
-              {visiblePeople?.length === 0 && (
+              {people && people?.length > 0 && visiblePeople?.length === 0 && (
                 <p>There are no people matching the current search criteria</p>
               )}
 
