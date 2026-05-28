@@ -109,6 +109,12 @@ export const PeoplePage = () => {
     return people;
   }, [searchParams, people]);
 
+  const isTherePeople =
+    people !== null &&
+    people?.length > 0 &&
+    visiblePeople?.length === 0 &&
+    !isLoading;
+
   return (
     <>
       <h1 className="title">People Page</h1>
@@ -135,7 +141,7 @@ export const PeoplePage = () => {
                 </p>
               )}
 
-              {people && people?.length > 0 && visiblePeople?.length === 0 && (
+              {isTherePeople && (
                 <p>There are no people matching the current search criteria</p>
               )}
 
