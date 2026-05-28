@@ -111,7 +111,7 @@ export const PeopleFilters = () => {
           className="button is-link is-outlined is-fullwidth"
           to={{
             pathname: `/people/${slug ? slug : ''}`,
-            search: `?${getSearchWith(searchParams, { sex: null, centuries: null, query: null })}`,
+            search: `?${getSearchWith(searchParams, { sex: null, centuries: null })}`,
           }}
         >
           Reset all filters
