@@ -14,9 +14,9 @@ export const PeoplePage = () => {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    setPeople(null);
     setIsLoading(true);
     setIsError(false);
+    setPeople(null);
     getPeople()
       .then(response => {
         const prepearedPeople = prepearPeople(response);
